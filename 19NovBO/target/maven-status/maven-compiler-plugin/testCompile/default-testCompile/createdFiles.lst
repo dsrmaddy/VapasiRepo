@@ -1,0 +1,5 @@
+org/vapasi/page/ProductPage.class
+org/vapasi/page/LoginPage.class
+org/vapasi/test/AppTest.class
+org/vapasi/page/CategoriesPage.class
+org/vapasi/page/CartPage.class

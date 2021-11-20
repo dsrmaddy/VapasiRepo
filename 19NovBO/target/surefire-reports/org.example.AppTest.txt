@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: org.example.AppTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 24.299 s <<< FAILURE! - in org.example.AppTest
+addCart(org.example.AppTest)  Time elapsed: 7.163 s  <<< FAILURE!
+java.lang.AssertionError: expected [$54.92] but found [$38.13]
+	at org.example.AppTest.addCart(AppTest.java:59)
+
