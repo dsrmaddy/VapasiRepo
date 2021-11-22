@@ -1,4 +1,4 @@
-package org.vapasi.page;
+package org.vapasi.pom.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

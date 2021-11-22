@@ -1,24 +1,23 @@
-package org.vapasi.test;
+package org.vapasi.pagefactory.test;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.vapasi.page.CartPage;
-import org.vapasi.page.CategoriesPage;
-import org.vapasi.page.LoginPage;
-import org.vapasi.page.ProductPage;
+import org.vapasi.pagefactory.*;
+import org.vapasi.pagefactory.page.FactoryModelCategoriesPage;
+import org.vapasi.pagefactory.page.FactoryModelLoginPage;
+import org.vapasi.pagefactory.page.FactoryModelProductPage;
+import org.vapasi.pom.page.CategoriesPage;
+import org.vapasi.pagefactory.page.FactoryModelCartPage;
+import org.vapasi.pom.page.LoginPage;
+import org.vapasi.pom.page.ProductPage;
 
 import java.util.concurrent.TimeUnit;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest
-{
+public class FactoryModelAppTest {
     WebDriver driver;
     /**
      * Rigorous Test :-)
@@ -42,22 +41,21 @@ public class AppTest
     {
         System.out.println("inside addCart");
 
-        LoginPage loginPage = new LoginPage();
-        loginPage.enterLoginPage(driver);
-        loginPage.giveDetailsAndLogin(driver);
+        FactoryModelLoginPage loginPage = new FactoryModelLoginPage(driver);
+        loginPage.enterLoginPage();
+        loginPage.giveDetailsAndLogin("xyz@gmail.com", "123456");
 
-        CategoriesPage catPage = new CategoriesPage();
+        FactoryModelCategoriesPage catPage = new FactoryModelCategoriesPage();
         catPage.selectBags(driver);
         catPage.selectFirstBag(driver);
 
-        ProductPage prodPage = new ProductPage();
+        FactoryModelProductPage prodPage = new FactoryModelProductPage();
         prodPage.addToCart(driver);
 
-        CartPage cartPage = new CartPage();
+        FactoryModelCartPage cartPage = new FactoryModelCartPage(driver);
         String totalValue = cartPage.getCartValue(driver);
         System.out.println("total cart value is :"+totalValue);
         Assert.assertEquals("$16.79", totalValue);
-
         cartPage.emptyCart(driver);
     }
 }

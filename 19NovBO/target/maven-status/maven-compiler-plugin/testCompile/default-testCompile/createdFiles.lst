@@ -1,5 +1,7 @@
 org/vapasi/page/ProductPage.class
 org/vapasi/page/LoginPage.class
 org/vapasi/test/AppTest.class
+org/vapasi/page/FactoryModelCartPage.class
+org/vapasi/test/FactoryModelAppTest.class
 org/vapasi/page/CategoriesPage.class
 org/vapasi/page/CartPage.class
