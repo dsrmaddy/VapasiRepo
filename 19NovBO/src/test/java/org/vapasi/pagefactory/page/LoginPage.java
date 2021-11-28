@@ -7,14 +7,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class FactoryModelLoginPage {
+public class LoginPage {
     @FindBy(css = "li#link-to-login")
     WebElement linkToLogin;
 
     @FindBy(css = "input#spree_user_email")
     WebElement email;
 
-    @FindBy(css = "spree_user_password")
+    @FindBy(id = "spree_user_password")
     WebElement password;
 
     @FindBy(css = "input#spree_user_remember_me")
@@ -23,9 +23,9 @@ public class FactoryModelLoginPage {
     @FindBy(css = "input[value='Login']")
     WebElement loginButton;
 
-    public FactoryModelLoginPage(WebDriver driver) {
+    public LoginPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
-        new WebDriverWait(driver, 5000);
+        new WebDriverWait(driver, 5);
     }
 
     public void enterLoginPage() {

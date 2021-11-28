@@ -8,6 +8,5 @@ public abstract class Bank {
         this.noOfDenominations = noOfDenom;
     }
 
-
     protected abstract void denomination();
 }

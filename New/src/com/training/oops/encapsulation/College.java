@@ -6,7 +6,6 @@ public class College {
     private String collegeName;
     private ArrayList<String> deptNames;
 
-
     public String getCollegeName() {
         return collegeName;
     }

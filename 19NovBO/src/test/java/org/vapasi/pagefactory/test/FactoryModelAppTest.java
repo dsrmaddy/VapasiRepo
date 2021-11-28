@@ -2,18 +2,14 @@ package org.vapasi.pagefactory.test;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.vapasi.pagefactory.*;
-import org.vapasi.pagefactory.page.FactoryModelCategoriesPage;
-import org.vapasi.pagefactory.page.FactoryModelLoginPage;
-import org.vapasi.pagefactory.page.FactoryModelProductPage;
-import org.vapasi.pom.page.CategoriesPage;
-import org.vapasi.pagefactory.page.FactoryModelCartPage;
-import org.vapasi.pom.page.LoginPage;
-import org.vapasi.pom.page.ProductPage;
+import org.vapasi.pagefactory.page.CategoriesPage;
+import org.vapasi.pagefactory.page.LoginPage;
+import org.vapasi.pagefactory.page.ProductPage;
+import org.vapasi.pagefactory.page.CartPage;
+import org.vapasi.pagefactory.page.CheckoutPage;
 
 import java.util.concurrent.TimeUnit;
 
@@ -41,21 +37,24 @@ public class FactoryModelAppTest {
     {
         System.out.println("inside addCart");
 
-        FactoryModelLoginPage loginPage = new FactoryModelLoginPage(driver);
+        LoginPage loginPage = new LoginPage(driver);
         loginPage.enterLoginPage();
         loginPage.giveDetailsAndLogin("xyz@gmail.com", "123456");
 
-        FactoryModelCategoriesPage catPage = new FactoryModelCategoriesPage();
-        catPage.selectBags(driver);
-        catPage.selectFirstBag(driver);
+        CategoriesPage catPage = new CategoriesPage(driver);
+        catPage.selectBags();
+        catPage.selectFirstBag();
 
-        FactoryModelProductPage prodPage = new FactoryModelProductPage();
-        prodPage.addToCart(driver);
+        ProductPage prodPage = new ProductPage(driver);
+        prodPage.addToCart();
 
-        FactoryModelCartPage cartPage = new FactoryModelCartPage(driver);
-        String totalValue = cartPage.getCartValue(driver);
-        System.out.println("total cart value is :"+totalValue);
-        Assert.assertEquals("$16.79", totalValue);
-        cartPage.emptyCart(driver);
+        CartPage cartPage = new CartPage(driver);
+        cartPage.checkoutAction();
+        //System.out.println("total cart value is :"+totalValue);
+        //Assert.assertEquals("$16.79", totalValue);
+        cartPage.emptyCart();
+
+        CheckoutPage checkoutPage = new CheckoutPage(driver);
+        checkoutPage.saveAndContinueAction();
     }
 }
