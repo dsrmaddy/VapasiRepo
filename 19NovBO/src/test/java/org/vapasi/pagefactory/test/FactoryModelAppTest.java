@@ -13,24 +13,8 @@ import org.vapasi.pagefactory.page.CheckoutPage;
 
 import java.util.concurrent.TimeUnit;
 
-public class FactoryModelAppTest {
-    WebDriver driver;
-    /**
-     * Rigorous Test :-)
-     */
-    @BeforeMethod
-    public void setup() {
-        System.setProperty("webdriver.chrome.driver","./drivers/chromedriver");
-        driver = new ChromeDriver();
-        driver.get("https://spree-vapasi-prod.herokuapp.com/");
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-    }
+public class FactoryModelAppTest extends BaseTest{
 
-    @AfterMethod
-    public void tearDown() {
-        driver.quit();
-    }
 
     @Test
     public void addCart()
@@ -52,9 +36,10 @@ public class FactoryModelAppTest {
         cartPage.checkoutAction();
         //System.out.println("total cart value is :"+totalValue);
         //Assert.assertEquals("$16.79", totalValue);
-        cartPage.emptyCart();
+        //cartPage.emptyCart();
 
         CheckoutPage checkoutPage = new CheckoutPage(driver);
         checkoutPage.saveAndContinueAction();
+
     }
 }
