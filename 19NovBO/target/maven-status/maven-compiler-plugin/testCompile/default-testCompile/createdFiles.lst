@@ -1,7 +1,8 @@
-org/vapasi/page/ProductPage.class
-org/vapasi/page/LoginPage.class
-org/vapasi/test/AppTest.class
-org/vapasi/page/FactoryModelCartPage.class
-org/vapasi/test/FactoryModelAppTest.class
-org/vapasi/page/CategoriesPage.class
-org/vapasi/page/CartPage.class
+org/vapasi/pagefactory/page/CheckoutPage.class
+org/vapasi/pagefactory/page/CartPage.class
+org/vapasi/pagefactory/test/FactoryModelAppTest.class
+org/vapasi/pagefactory/page/LoginPage.class
+org/vapasi/utilities/ScreenshotUtil.class
+org/vapasi/pagefactory/page/CategoriesPage.class
+org/vapasi/pagefactory/test/BaseTest.class
+org/vapasi/pagefactory/page/ProductPage.class

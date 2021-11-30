@@ -3,13 +3,23 @@
 <suite thread-count="1" name="Failed suite [Surefire suite]" verbose="0">
   <test thread-count="1" name="Surefire test(failed)" verbose="0">
     <classes>
-      <class name="org.vapasi.test.AppTest">
+      <class name="org.vapasi.pagefactory.test.FactoryModelAppTest">
         <methods>
-          <include name="addCart"/>
-          <include name="tearDown"/>
+          <include name="takeScreenshotOnTestFailure"/>
+          <include name="teardown"/>
+          <include name="startReport"/>
+          <include name="endReport"/>
           <include name="setup"/>
+          <include name="addCart"/>
         </methods>
-      </class> <!-- org.vapasi.test.AppTest -->
+      </class> <!-- org.vapasi.pagefactory.test.FactoryModelAppTest -->
+      <class name="org.vapasi.pom.test.AppTest">
+        <methods>
+          <include name="setup"/>
+          <include name="tearDown"/>
+          <include name="addCart"/>
+        </methods>
+      </class> <!-- org.vapasi.pom.test.AppTest -->
     </classes>
   </test> <!-- Surefire test(failed) -->
 </suite> <!-- Failed suite [Surefire suite] -->

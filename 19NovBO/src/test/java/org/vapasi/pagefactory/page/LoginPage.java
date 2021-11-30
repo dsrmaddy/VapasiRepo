@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage {
@@ -24,8 +25,8 @@ public class LoginPage {
     WebElement loginButton;
 
     public LoginPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        new WebDriverWait(driver, 5);
+        PageFactory.initElements(
+                new AjaxElementLocatorFactory(driver, 5), this);
     }
 
     public void enterLoginPage() {

@@ -5,11 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
 public class CartPage {
 
-    //@FindBy(css = "td[class='lead']")
-   // WebElement totalValueElement;
+    @FindBy(css = "td[class='lead']")
+    WebElement totalValueElement;
 
     @FindBy(id = "checkout-link")
     WebElement checkOutButton;
@@ -18,12 +19,13 @@ public class CartPage {
     WebElement emptyCartButton;
 
     public CartPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(
+                new AjaxElementLocatorFactory(driver, 5), this);
     }
 
-//    public String getCartValue(WebDriver driver) {
-//        return totalValueElement.getText();
-//    }
+    public String getCartValue() {
+        return totalValueElement.getText();
+    }
 
     public void checkoutAction() {
         checkOutButton.click();
