@@ -2,6 +2,7 @@ package org.vapasi.pagefactory.test;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
@@ -14,6 +15,8 @@ import org.testng.annotations.*;
 import org.vapasi.utilities.ScreenshotUtil;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
@@ -27,7 +30,9 @@ public class BaseTest {
      */
     @BeforeTest
     public void startReport(){
-        htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "/test-output/SpreeExtentReport.html");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
+        Date date = new Date();
+        htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "/test-output/"+dateFormat.format(date)+"SpreeReport.html");
         extent = new ExtentReports();
         extent.attachReporter(htmlReporter);
         extent.setSystemInfo("Host Name", "Spree");
@@ -37,8 +42,6 @@ public class BaseTest {
         htmlReporter.config().setReportName("Spree Failed Report with Screenshots");
         htmlReporter.config().setTheme(Theme.STANDARD);
     }
-
-
 
     @BeforeMethod
     public void setup() {
@@ -56,6 +59,7 @@ public class BaseTest {
             logger.log(Status.FAIL, MarkupHelper.createLabel(result.getThrowable() + " - Test Case Failed", ExtentColor.RED));
             String screenshotPath = ScreenshotUtil.takeScreenshot(driver, result.getName());
             logger.fail("Test Case Failed Snapshot is " + logger.addScreenCaptureFromBase64String(screenshotPath));
+            //logger.fail("Test Case Failed Snapshot is " + MediaEntityBuilder.createScreenCaptureFromBase64String(screenshotPath).build());
         } else if(result.getStatus() == ITestResult.SKIP){
             logger.log(Status.SKIP, MarkupHelper.createLabel(result.getName() + " - Test Case Skipped", ExtentColor.ORANGE));
         }

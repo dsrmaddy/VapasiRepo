@@ -1,6 +1,7 @@
 package org.vapasi.pagefactory.test;
 
 import com.aventstack.extentreports.Status;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.vapasi.pagefactory.page.CategoriesPage;
@@ -19,31 +20,36 @@ public class FactoryModelAppTest extends BaseTest{
         System.out.println("inside addCart");
         logger = extent.createTest("addCart");
 
+        //Login to Spree site
         LoginPage loginPage = new LoginPage(driver);
         loginPage.enterLoginPage();
         loginPage.giveDetailsAndLogin("xyz@gmail.com", "123456");
 
+        //driver.findElement(By.cssSelector("a.cart-info")).click();
+        //Select Bag category and the first product in list
         CategoriesPage catPage = new CategoriesPage(driver);
         catPage.selectBags();
         catPage.selectFirstBag();
 
+        //Go to product page and add one quantity to Cart
         ProductPage prodPage = new ProductPage(driver);
         prodPage.addToCart();
 
-        Assert.assertTrue(false);
         //To generate the log when the test case is failed
-        logger.log(Status.FAIL, "Test Case (addCart) Status is failed");
+        Assert.assertTrue(false);
+        //logger.log(Status.FAIL, "Test Case (addCart) Status is failed");
 
-        //CartPage cartPage = new CartPage(driver);
-        //cartPage.checkoutAction();
-
-        //String totalValue = cartPage.getCartValue();
-        //System.out.println("total cart value is :"+totalValue);
-        //Assert.assertEquals("$16.79", totalValue);
+        //Go to Cart page and validate if value is correct
+        CartPage cartPage = new CartPage(driver);
+        String totalValue = cartPage.getCartValue();
+        Assert.assertEquals("$93.15", totalValue);
+        cartPage.checkoutAction();
         //cartPage.emptyCart();
 
-        /* CheckoutPage checkoutPage = new CheckoutPage(driver);
-        checkoutPage.saveAndContinueAction();
-        Assert.assertTrue(true); */
+        //Go to Checkout page and give address, shipping, payment details
+        CheckoutPage checkoutPage = new CheckoutPage(driver);
+        checkoutPage.fillBillingAddress("X", "YZ", "Anchorage", "Anchorage", "Alaska", "856712", "1234567890");
+        checkoutPage.fillShipping();
+        checkoutPage.fillPayment();
     }
 }
